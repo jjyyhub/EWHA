@@ -5,5 +5,17 @@
       "path": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
       "default": true
     }
+  ],
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar"
+  ],
+  "java.project.sourcePaths": [
+    "src",
+    "ffinal"
   ]
 }
+
+
+
+
+
