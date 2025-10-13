@@ -65,52 +65,52 @@ def evaluate(output, label):
     error = (output != label).sum() * 1. / len(output)
     print('Error: %1.4f'%error)
 
-# def main():
-# Please set a training file that you want to use for this run below
-trainMatrix, tokenlist, trainCategory = readMatrix('./data/hw2_MATRIX.TRAIN')
-testMatrix, tokenlist, testCategory = readMatrix('./data/hw2_MATRIX.TEST')
-
-state = nb_train(trainMatrix, trainCategory)
-output = nb_test(testMatrix, state)
-
-print('(a) Test set error')
-evaluate(output, testCategory)
-
-##### (b) #####
-print('(b) Top 5 tokens list')
-spam = state['likelihood'][1]
-not_spam = state['likelihood'][0]
-
-# log 뺄셈
-dif = spam - not_spam
-
-top = np.argsort(dif)[-5:][::-1]
-for i in top:
-    print(tokenlist[i], '%1.4f'%dif[i])
-
-##### (c) #####
-size = [50,100,200,400,800,1400]
-error = []
-
-for i in size:
-    path = f'./data/hw2_MATRIX.TRAIN.{i}'
-    trainMatrix, tokenlist, trainCategory = readMatrix(path)
+def main():
+    # Please set a training file that you want to use for this run below
+    trainMatrix, tokenlist, trainCategory = readMatrix('./data/hw2_MATRIX.TRAIN')
     testMatrix, tokenlist, testCategory = readMatrix('./data/hw2_MATRIX.TEST')
 
     state = nb_train(trainMatrix, trainCategory)
     output = nb_test(testMatrix, state)
-    e = (output != testCategory).sum() / len(output)
-    error.append(e)
 
-plt.plot(size, error, marker='o')
-plt.xlabel('hw2_MATRIX.TRAIN Size')
-plt.ylabel('Test Error')
-plt.ylim(0.01,0.05)
-plt.show()
-# return
+    print('(a) Test set error')
+    evaluate(output, testCategory)
 
-# if __name__ == '__main__':
-#     main()
+    ##### (b) #####
+    print('(b) Top 5 tokens list')
+    spam = state['likelihood'][1]
+    not_spam = state['likelihood'][0]
+
+    # log 뺄셈
+    dif = spam - not_spam
+
+    top = np.argsort(dif)[-5:][::-1]
+    for i in top:
+        print(tokenlist[i], '%1.4f'%dif[i])
+
+    ##### (c) #####
+    size = [50,100,200,400,800,1400]
+    error = []
+
+    for i in size:
+        path = f'./data/hw2_MATRIX.TRAIN.{i}'
+        trainMatrix, tokenlist, trainCategory = readMatrix(path)
+        testMatrix, tokenlist, testCategory = readMatrix('./data/hw2_MATRIX.TEST')
+
+        state = nb_train(trainMatrix, trainCategory)
+        output = nb_test(testMatrix, state)
+        e = (output != testCategory).mean()
+        error.append(e)
+
+    plt.plot(size, error, marker='o')
+    plt.xlabel('hw2_MATRIX.TRAIN Size')
+    plt.ylabel('Test Error')
+    plt.ylim(0.01,0.05)
+    plt.show()
+    return
+
+if __name__ == '__main__':
+    main()
 
     
 
