@@ -66,6 +66,7 @@ def evaluate(output, label):
     print('Error: %1.4f'%error)
 
 def main():
+    # (a) #
     # Please set a training file that you want to use for this run below
     trainMatrix, tokenlist, trainCategory = readMatrix('./data/hw2_MATRIX.TRAIN')
     testMatrix, tokenlist, testCategory = readMatrix('./data/hw2_MATRIX.TEST')
