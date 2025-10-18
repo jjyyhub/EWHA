@@ -75,7 +75,7 @@ def main():
     scaled_svm_clf_soft.fit(trainMatrix, trainCategory)
     scaled_svm_clf_rbf.fit(trainMatrix, trainCategory)
     # Refer to the above code for other SVMs
-
+    
     output_hard = svm_test(scaled_svm_clf_hard, testMatrix)
     output_soft = svm_test(scaled_svm_clf_soft, testMatrix)
     output_rbf = svm_test(scaled_svm_clf_rbf, testMatrix)

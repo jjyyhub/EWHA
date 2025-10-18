@@ -30,6 +30,7 @@ def nb_train(matrix, category):
         idx = np.where(category==c)[0]
         X = matrix[idx,:]
 
+        # log likelihood
         prior[c] = np.log(len(idx)/len(category))
 
         word = np.sum(X,axis=0)
