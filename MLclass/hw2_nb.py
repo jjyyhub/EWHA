@@ -102,6 +102,7 @@ def main():
         state = nb_train(trainMatrix, trainCategory)
         output = nb_test(testMatrix, state)
         e = (output != testCategory).mean()
+        print(f"train size{i} error: %1.4f"%e)
         error.append(e)
 
     plt.plot(size, error, marker='o')
